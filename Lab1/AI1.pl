@@ -24,7 +24,7 @@ female('Daenerys Targaryen').
 
 spouse('Rickard Stark','Lyarra Stark').
 spouse('Ned Stark','Catelyn Stark').
-spouse('Lyanna Stark','Rhaella Targaryen').
+spouse('Lyanna Stark','Rhaegar Targaryen').
 spouse('Robb Stark','Talisa Maegyr').
 spouse('Rhaegar Targaryen','Elia Targaryen').
 spouse('Aerys Targaryen','Rhaella Targaryen').
@@ -64,13 +64,10 @@ wife(X,Y):-female(X), (spouse(X,Y); spouse(Y,X)).
 husband(X,Y):-male(X), (spouse(X,Y); spouse(Y,X)).
 mother(X,Y):-female(X), parent(X,Y).
 father(X,Y):-male(X), parent(X,Y).
-sister(X,Y):-female(X), parent(Z,X), parent(Z,Y), X\=Y.
+sister(X,Y):-female(X),(parent(Z,X), parent(Z,Y)), X\=Y.
 brother(X,Y):-male(X), parent(Z,X), parent(Z,Y), X\=Y.
-father_in_law(X,Y):-father(X,Z), (spouse(Z,Y); spouse(Y,Z)).
-mother_in_law(X,Y):-mother(X,Z), (spouse(Z,Y); spouse(Y,Z)).
 uncle(X,Y):-brother(X,Z), parent(Z,Y), X\=Z.
 aunt(X,Y):-sister(X,Z), parent(Z,Y), X\=Z.
 nephew(X,Y):-male(X),(uncle(Y,X);aunt(Y,X)).
 niece(X,Y):-female(X),(   uncle(Y,x);aunt(Y,X)).
-grandmother(X,Y):-mother(X,Z), parent(Z,Y).
-grandfather(X,Y):-father(X,Z), parent(Z,Y).
+haschild(X):-parent(X, _).
