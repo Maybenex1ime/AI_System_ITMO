@@ -32,11 +32,11 @@ spouse('Aerys Targaryen','Rhaella Targaryen').
 parent('Rickard Stark','Ned Stark').
 parent('Rickard Stark','Brandon Stark').
 parent('Rickard Stark','Benjen Stark').
-parent('Rickard Stark','Lyarra Stark').
+parent('Rickard Stark','Lyanna Stark').
 parent('Lyarra Stark','Ned Stark').
 parent('Lyarra Stark','Brandon Stark').
 parent('Lyarra Stark','Benjen Stark').
-parent('Lyarra Stark','Lyarra Stark').
+parent('Lyarra Stark','Lyanna Stark').
 parent('Ned Stark','Robb Stark').
 parent('Ned Stark','Sansa Stark').
 parent('Ned Stark','Arya Stark').
@@ -66,8 +66,8 @@ mother(X,Y):-female(X), parent(X,Y).
 father(X,Y):-male(X), parent(X,Y).
 sister(X,Y):-female(X),(parent(Z,X), parent(Z,Y)), X\=Y.
 brother(X,Y):-male(X), parent(Z,X), parent(Z,Y), X\=Y.
-uncle(X,Y):-brother(X,Z), parent(Z,Y), X\=Z.
-aunt(X,Y):-sister(X,Z), parent(Z,Y), X\=Z.
+uncle(X,Y):-brother(X,Z), parent(Z,Y).
+aunt(X,Y):-sister(X,Z), parent(Z,Y).
 nephew(X,Y):-male(X),(uncle(Y,X);aunt(Y,X)).
 niece(X,Y):-female(X),(   uncle(Y,x);aunt(Y,X)).
 haschild(X):-parent(X, _).
